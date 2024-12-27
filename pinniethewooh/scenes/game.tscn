@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmfayg44xu6f8"]
+
+[ext_resource type="PackedScene" uid="uid://4fjthmh7bmpx" path="res://scenes/player.tscn" id="1_kjik5"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(0, -1)
+
+[node name="Player" parent="." instance=ExtResource("1_kjik5")]
+position = Vector2(32, 32)
+collision_layer = 1

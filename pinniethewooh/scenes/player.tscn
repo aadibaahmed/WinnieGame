@@ -1,0 +1,158 @@
+[gd_scene load_steps=24 format=3 uid="uid://4fjthmh7bmpx"]
+
+[ext_resource type="Texture2D" uid="uid://bfgsvmt82u8ks" path="res://assets/sprites/poohsprite1-Sheet.png" id="1_3bi6n"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_tk0wq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1g2ty"]
+load_path = "res://.godot/imported/poohsprite1-Sheet.png-88c6aa7dc7870c9fb45071262b5e30a1.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dven"]
+size = Vector2(14, 13)
+
+[sub_resource type="Animation" id="Animation_ptki7"]
+resource_name = "Pooh_Idle"
+length = 0.4
+loop_mode = 1
+step = 0.04
+
+[sub_resource type="Animation" id="Animation_favog"]
+resource_name = "Pooh_walk_right"
+length = 0.85
+loop_mode = 1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 13, 12]
+}
+
+[sub_resource type="Animation" id="Animation_7ourm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2w0l"]
+_data = {
+"Pooh_Idle": SubResource("Animation_ptki7"),
+"Pooh_walk_right": SubResource("Animation_favog"),
+"RESET": SubResource("Animation_7ourm")
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_q6ljh"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fbr7t"]
+animation = &"Pooh_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_novt2"]
+animation = &"Pooh_walk_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_rxx3b"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e3bsi"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k8ukc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gya5w"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_beljb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ublh5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lava1"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_q6ljh")
+states/Idle/position = Vector2(351, 100)
+states/Pooh_Idle/node = SubResource("AnimationNodeAnimation_fbr7t")
+states/Pooh_Idle/position = Vector2(351, 27)
+states/Pooh_walk_right/node = SubResource("AnimationNodeAnimation_novt2")
+states/Pooh_walk_right/position = Vector2(514, 172)
+states/walk/node = SubResource("AnimationNodeBlendSpace2D_rxx3b")
+states/walk/position = Vector2(514, 99)
+transitions = ["Idle", "walk", SubResource("AnimationNodeStateMachineTransition_e3bsi"), "walk", "Idle", SubResource("AnimationNodeStateMachineTransition_k8ukc"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gya5w"), "Idle", "Pooh_Idle", SubResource("AnimationNodeStateMachineTransition_beljb"), "walk", "Pooh_walk_right", SubResource("AnimationNodeStateMachineTransition_ublh5")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smstm"]
+atlas = ExtResource("1_3bi6n")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0ldv"]
+atlas = ExtResource("1_3bi6n")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1txa4"]
+atlas = ExtResource("1_3bi6n")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plxio"]
+atlas = ExtResource("1_3bi6n")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhogf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smstm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0ldv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1txa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plxio")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_tk0wq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_1g2ty")
+hframes = 11
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_2dven")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g2w0l")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_lava1")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/walk/blend_position = Vector2(0, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(73, -4)
+sprite_frames = SubResource("SpriteFrames_fhogf")
+animation = &"new_animation"
+frame_progress = 0.526498
