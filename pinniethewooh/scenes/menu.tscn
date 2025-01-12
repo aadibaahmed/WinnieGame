@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm6p7bfmsyqnn"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_33ni4"]
+[ext_resource type="Texture2D" uid="uid://cu6o83ixd3aw7" path="res://assets/sprites/poopopo.jpg" id="2_qwjgr"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+script = ExtResource("1_33ni4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qwjgr")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 20
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0.832491, 0.691689, 0.113522, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.174173, 0.127216, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 35
+text = "Pinnie The Wooh Game"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(1, 0.172549, 0.12549, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.709924, 0.645542, 0.766181, 1)
+theme_override_colors/font_hover_color = Color(0.830335, 0.830335, 0.830335, 1)
+theme_override_colors/font_pressed_color = Color(0.212305, 0.212305, 0.212305, 1)
+theme_override_colors/font_focus_color = Color(1, 0.172549, 0.12549, 1)
+theme_override_colors/font_color = Color(0.831373, 0.690196, 0.113725, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "Start"
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(1, 0.172549, 0.12549, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.709924, 0.645542, 0.766181, 1)
+theme_override_colors/font_hover_color = Color(0.830335, 0.830335, 0.830335, 1)
+theme_override_colors/font_pressed_color = Color(0.212305, 0.212305, 0.212305, 1)
+theme_override_colors/font_focus_color = Color(1, 0.172549, 0.12549, 1)
+theme_override_colors/font_color = Color(0.831373, 0.690196, 0.113725, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "Exit"
+
+[node name="VSeparator4" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Start" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Exit" to="." method="_on_button_2_pressed"]
